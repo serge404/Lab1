@@ -86,15 +86,15 @@ void list_add_at_index(list_t *l, elem value, int index)
   new_node->next = NULL;
   
   node_t *current = l->head;
-  node_t *temp = NULL;
+  node_t *next_node = NULL;
   
   while (current != NULL && i < index)
   {
     i++;
-    temp = current->next;
-    current = temp;
+    next_node = current->next;
+    current = next_node;
   }
-  temp = current->next;
+  next_node = current->next;
   current->next = new_node;
   new_node->next = next_node;
 }
@@ -156,6 +156,7 @@ bool list_is_in(list_t *l, elem value)
 
 elem list_get_elem_at(list_t *l, int index) 
 { 
+  elem retval;
   node_t *current = l->head; 
   int count = 0; 
   while (current->next != NULL && count < index) 
@@ -164,7 +165,7 @@ elem list_get_elem_at(list_t *l, int index)
     current = current->next;
   }
   if (current != NULL)
-    elem retval = current->value;
+    retval = current->value;
 	return retval; 
 }
 
